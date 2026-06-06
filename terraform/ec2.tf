@@ -37,3 +37,8 @@ resource "aws_instance" "db_server" {
     prevent_destroy = true 
   }
 }
+resource "aws_eip" "web_eip" {
+  instance = aws_instance.web_server.id
+  domain   = "vpc"
+  tags     = { Name = "webdt3-web-eip" }
+}

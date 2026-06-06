@@ -4,7 +4,7 @@
 
 output "web_server_public_ip" {
   description = "IP public của Web Server"
-  value       = aws_instance.web_server.public_ip
+  value       = aws_eip.web_eip.public_ip
 }
 
 output "db_server_private_ip" {
@@ -19,7 +19,7 @@ output "cloudwatch_alarm_status" {
 
 output "web_app_url" {
   description = "URL truy cập ứng dụng web"
-  value       = "http://${aws_instance.web_server.public_ip}:9000"
+  value       = "http://${aws_eip.web_eip.public_ip}:9000"
 }
 
 output "vpn_gateway_id" {
