@@ -23,4 +23,4 @@ docker compose up -d
 http://localhost:9000 
 
 ### Cloud (AWS EC2)
-http://100.24.67.36:9000
+http://44.217.63.160:9000
