@@ -20,4 +20,7 @@ docker compose up -d
 
 ## Truy cập
 
-http://localhost:9000
+http://localhost:9000 
+
+### Cloud (AWS EC2)
+http://100.24.67.36:9000
