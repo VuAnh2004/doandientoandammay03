@@ -21,7 +21,7 @@ resource "aws_dms_replication_subnet_group" "dms_subnet_group" {
 
 resource "aws_dms_replication_instance" "dms_instance" {
   replication_instance_id     = "webdt3-dms-instance"
-  replication_instance_class  = "dms.t3.medium"  # ← sửa từ micro thành medium
+  replication_instance_class  = "dms.t3.medium"
   allocated_storage           = 20
   vpc_security_group_ids      = [data.aws_security_group.db_sg.id]
   replication_subnet_group_id = aws_dms_replication_subnet_group.dms_subnet_group.id
@@ -36,22 +36,23 @@ resource "aws_dms_endpoint" "source" {
   endpoint_type = "source"
   engine_name   = "sqlserver"
   username      = "sa"
-  password      = var.db_password
-  server_name   = "10.0.1.174"
+  password      = "Anh@12345"
+  server_name   = "10.0.1.174"  # EC2 DB on-premise
   port          = 1433
   database_name = "QLTH"
-  # xóa extra_connection_attributes vì SQL Server không cần
 }
 
 resource "aws_dms_endpoint" "target" {
-  endpoint_id   = "sqlserver-target"
+  endpoint_id   = "rds-target-v2"  # ← đổi tên mới
   endpoint_type = "target"
   engine_name   = "sqlserver"
-  username      = "sa"
-  password      = var.db_password
-  server_name   = "10.0.1.22"
+  username      = "admin"
+  password      = "Anh12345"
+  server_name   = aws_db_instance.sql_server.address
   port          = 1433
   database_name = "QLTH"
+
+  depends_on = [aws_db_instance.sql_server]
 }
 
 # --- 4. REPLICATION TASK ---

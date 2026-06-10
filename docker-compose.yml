@@ -1,23 +1,5 @@
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver
-    restart: always
-    environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "Anh@12345"
-    ports:
-      - "1433:1433"
-    volumes:
-      # Thay đổi dòng này: đưa thư mục chứa file QLTH vào vùng tạm /scripts trong container
-      - ./database:/scripts
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    networks:
-      - webdt3-network
-
+  # Xóa sqlserver container vì giờ dùng RDS
   webdt3:
     image: vuanh2004/webdt3:final
     container_name: webdt3
@@ -26,9 +8,7 @@ services:
       - "9000:5254"
     environment:
       ASPNETCORE_URLS: "http://+:5254"
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=QLTH;User Id=sa;Password=Anh@12345;TrustServerCertificate=True"
-    depends_on:
-      - sqlserver
+      ConnectionStrings__DefaultConnection: "Server=${RDS_ENDPOINT};Database=QLTH;User Id=admin;Password=Anh@12345;TrustServerCertificate=True"
     networks:
       - webdt3-network
 

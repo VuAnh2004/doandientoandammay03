@@ -31,3 +31,9 @@ output "dms_instance_arn" {
   description = "ARN của DMS Replication Instance"
   value       = aws_dms_replication_instance.dms_instance.replication_instance_arn
 }
+
+
+output "rds_endpoint" {
+  description = "Endpoint của RDS SQL Server"
+  value       = aws_db_instance.sql_server.address
+}
