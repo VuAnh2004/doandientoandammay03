@@ -65,6 +65,24 @@ resource "aws_security_group" "db_sg" {
   description = "Security group for Database"
   vpc_id      = data.aws_vpc.main.id
 
+  # SSH để quản trị
+  ingress {
+    description = "SSH Access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # SQL Server
+  ingress {
+    description = "SQL Server"
+    from_port   = 1433
+    to_port     = 1433
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

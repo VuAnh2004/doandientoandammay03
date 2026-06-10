@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.14.9",
-  "serial": 282,
+  "serial": 274,
   "lineage": "f5053a73-8d50-7a60-cce4-a71d0212bc37",
   "outputs": {
     "cloudwatch_alarm_status": {
@@ -515,6 +515,122 @@
           "dependencies": [
             "data.aws_subnet.subnet_1",
             "data.aws_subnet.subnet_2"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_dms_endpoint",
+      "name": "source",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "certificate_arn": "",
+            "database_name": "QLTH",
+            "elasticsearch_settings": [],
+            "endpoint_arn": "arn:aws:dms:us-east-1:822725962515:endpoint:UAFYUQMC7RHYJDQAYS6QDLZWRM",
+            "endpoint_id": "sqlserver-source",
+            "endpoint_type": "source",
+            "engine_name": "sqlserver",
+            "extra_connection_attributes": "",
+            "id": "sqlserver-source",
+            "kafka_settings": [],
+            "kinesis_settings": [],
+            "kms_key_arn": "arn:aws:kms:us-east-1:822725962515:key/1c0540cc-8b71-432a-83f3-2b9e6d7a7798",
+            "mongodb_settings": [],
+            "mysql_settings": [],
+            "oracle_settings": [],
+            "password": "Anh@12345",
+            "pause_replication_tasks": null,
+            "port": 1433,
+            "postgres_settings": [],
+            "redis_settings": [],
+            "redshift_settings": [],
+            "region": "us-east-1",
+            "secrets_manager_access_role_arn": "",
+            "secrets_manager_arn": "",
+            "server_name": "10.0.1.174",
+            "service_access_role": null,
+            "ssl_mode": "none",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "username": "sa"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_dms_endpoint",
+      "name": "target",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "certificate_arn": "",
+            "database_name": "QLTH",
+            "elasticsearch_settings": [],
+            "endpoint_arn": "arn:aws:dms:us-east-1:822725962515:endpoint:QJMJDT7DIJDXNA3BE4YZZ5LMRQ",
+            "endpoint_id": "rds-target-v2",
+            "endpoint_type": "target",
+            "engine_name": "sqlserver",
+            "extra_connection_attributes": "",
+            "id": "rds-target-v2",
+            "kafka_settings": [],
+            "kinesis_settings": [],
+            "kms_key_arn": "arn:aws:kms:us-east-1:822725962515:key/1c0540cc-8b71-432a-83f3-2b9e6d7a7798",
+            "mongodb_settings": [],
+            "mysql_settings": [],
+            "oracle_settings": [],
+            "password": "Anh12345",
+            "pause_replication_tasks": null,
+            "port": 1433,
+            "postgres_settings": [],
+            "redis_settings": [],
+            "redshift_settings": [],
+            "region": "us-east-1",
+            "secrets_manager_access_role_arn": "",
+            "secrets_manager_arn": "",
+            "server_name": "webdt3-rds.cg7ii0aiuwzb.us-east-1.rds.amazonaws.com",
+            "service_access_role": null,
+            "ssl_mode": "none",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "username": "admin"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "aws_db_instance.sql_server",
+            "aws_db_subnet_group.rds_subnet",
+            "aws_security_group.db_sg",
+            "data.aws_subnet.subnet_1",
+            "data.aws_subnet.subnet_2",
+            "data.aws_vpc.main"
           ]
         }
       ]
@@ -1756,7 +1872,7 @@
             "protocol": "tcp",
             "region": "us-east-1",
             "security_group_id": "sg-0043ae78a37c3e6d4",
-            "security_group_rule_id": "sgr-02812af387204f61f",
+            "security_group_rule_id": "sgr-081669559a3716f4e",
             "self": false,
             "source_security_group_id": "sg-06b642a8c27fc0b67",
             "timeouts": null,
@@ -1792,7 +1908,7 @@
             "protocol": "tcp",
             "region": "us-east-1",
             "security_group_id": "sg-0043ae78a37c3e6d4",
-            "security_group_rule_id": "sgr-02f8481393231e498",
+            "security_group_rule_id": "sgr-0d08c2a100e0e9b91",
             "self": false,
             "source_security_group_id": "sg-0221cf9c48dea7d6b",
             "timeouts": null,
