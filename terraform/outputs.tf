@@ -37,3 +37,13 @@ output "rds_endpoint" {
   description = "Endpoint của RDS SQL Server"
   value       = aws_db_instance.sql_server.address
 }
+
+output "alb_dns" {
+  description = "DNS của ALB"
+  value       = "http://${aws_lb.web_alb.dns_name}"
+}
+
+output "waf_arn" {
+  description = "ARN của WAF"
+  value       = aws_wafv2_web_acl.web_acl.arn
+}

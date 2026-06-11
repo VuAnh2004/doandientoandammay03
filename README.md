@@ -22,5 +22,8 @@ docker compose up -d
 
 http://localhost:9000 
 
-### Cloud (AWS EC2)
+### Cloud (AWS EC2) - Truy cập trực tiếp
 http://44.217.63.160:9000
+
+### Cloud (AWS) - Qua ALB + WAF (Khuyến nghị)
+http://webdt3-alb-592397268.us-east-1.elb.amazonaws.com

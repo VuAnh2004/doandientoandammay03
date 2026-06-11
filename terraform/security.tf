@@ -24,6 +24,22 @@ resource "aws_security_group" "web_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "HTTP ALB"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTPS ALB"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -35,7 +51,7 @@ resource "aws_security_group" "web_sg" {
 
   lifecycle {
     create_before_destroy = true
-    ignore_changes        = [description, ingress, egress]
+    ignore_changes        = [description]  # ← bỏ ingress/egress ra khỏi ignore
   }
 }
 
@@ -65,7 +81,6 @@ resource "aws_security_group" "db_sg" {
   description = "Security group for Database"
   vpc_id      = data.aws_vpc.main.id
 
-  # SSH để quản trị
   ingress {
     description = "SSH Access"
     from_port   = 22
@@ -74,7 +89,6 @@ resource "aws_security_group" "db_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # SQL Server
   ingress {
     description = "SQL Server"
     from_port   = 1433
